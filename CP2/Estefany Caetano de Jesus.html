@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estefany Caetano de Jesus / CP2</title>
+</head>
+<body>
+    <h1>CP2</h1>
+    <br>
+    <h2>Número primo?</h2>
+    <span>Digite um número:</span>
+    <section class="numero--primo">
+
+        <input type="number" id="numero">   
+        <button onclick="Verificar()">Verificar</button>
+
+        <p id="resultado"></p>
+    
+    <script>
+        function nPrimo(numero){
+            if (numero == 0 || numero == 1){
+                return "Não é um número primo";
+            }
+
+            for(let div = 2; div <= Math.sqrt(numero); div++){
+                if(numero % div == 0){
+                    return "Não é um número primo.";
+                }
+            }
+
+            return "É um número primo.";
+        }
+
+        function Verificar() {
+            let numero = document.getElementById("numero").value;
+            let resultado = nPrimo(numero);
+            document.getElementById("resultado").innerText = resultado;
+        }
+    </script> 
+
+    <br>
+    
+            <h2>Números primos entre:</h2>
+                    
+            <span>Do número:</span>
+            <input type="number" id="numeroInicio">  
+            <span>Até o número:</span>
+            <input type="number" id="numeroFim">  
+                        
+            <button onclick="verificarPrimos()">Verificar</button>
+            
+            <section class="primo">
+                <p id="resultado2"></p>
+            </section>
+            
+            <script>
+                const ePrimo = numero => { // Função para verificar se um número é primo
+                    if (numero <= 1) return false;
+                    for (let div = 2; div <= Math.sqrt(numero); div++) {
+                        if (numero % div === 0) return false;
+                    }
+                    return true;
+                };
+            
+                const verificarPrimos = () => { // Função para verificar todos os números primos dentro de um intervalo
+                    const inicio = parseInt(document.getElementById("numeroInicio").value);
+                    const fim = parseInt(document.getElementById("numeroFim").value);
+                    const primos = [];
+            
+                    for (let num = inicio; num <= fim; num++) { // Itera do número inicial até o final
+                        if (ePrimo(num)) primos.push(num);
+                    }
+            
+                    document.getElementById("resultado2").innerText = primos.length
+                        ? `Primos: ${primos.join(", ")}`
+                        : `Não há números primos nesse intervalo.`;
+                };
+            </script>
+
+    <br>        
+
+
+    <h2>Merreca:</h2>
+    
+    <span>Digite o valor R$:</span>
+    <input type="number" id="dinheiro">  
+                
+    <button onclick="divisao()">Calcular</button>
+
+    <section class="valor--merreca">
+        <p id="resultadoMoedas100"></p>  <!-- Para resultados de M$100 -->
+        <p id="resultadoMoedas50"></p>   <!-- Para resultados de M$50 -->
+        <p id="resultadoMoedas10"></p>   <!-- Para resultados de M$10 -->
+        <p id="resultadoMoedas5"></p>   <!-- Para resultados de M$5 -->
+        <p id="resultadoMoedas1"></p>   <!-- Para resultados de M$1 -->
+
+    </section>    
+
+    <script>
+        function divisao() {
+            // Pega o valor do input com id="dinheiro" e converte para inteiro
+            let valor = parseInt(document.getElementById("dinheiro").value);
+            
+            // Divide o valor por 100 e usa Math.floor() para obter o número de moedas inteiras de 100
+            let moedasDe100 = Math.floor(valor / 100);
+
+                    // Pega o resto da divisão por 100
+                    let restoDe100 = valor % 100;
+                    
+                    // Divide o resto por 50 e usa Math.floor() para obter o número de moedas inteiras de 50
+                    let moedasDe50 = Math.floor(restoDe100 / 50);
+
+                            // Pega o resto da divisão por 50
+                            let restoDe50 = valor % 50;
+                        
+                            // Divide o resto por 50 e usa Math.floor() para obter o número de moedas inteiras de 50
+                            let moedasDe10 = Math.floor(restoDe50 / 10);
+
+                                    // Pega o resto da divisão por 10
+                                    let restoDe10 = valor % 10;
+                                
+                                    // Divide o resto por 50 e usa Math.floor() para obter o número de moedas inteiras de 50
+                                    let moedasDe5 = Math.floor(restoDe10 / 5);
+
+                                             // Pega o resto da divisão por 10
+                                            let restoDe5 = valor % 5;
+                                
+                                            // Divide o resto por 50 e usa Math.floor() para obter o número de moedas inteiras de 50
+                                            let moedasDe1 = Math.floor(restoDe10 / 1);
+
+            // Exibe os resultados separadamente
+            document.getElementById("resultadoMoedas100").innerText = moedasDe100 + " moeda(s) de M$ 100";
+            document.getElementById("resultadoMoedas50").innerText =  moedasDe50 + " moeda(s) de M$ 50";
+            document.getElementById("resultadoMoedas10").innerText =  moedasDe10 + " moeda(s) de M$ 10";
+            document.getElementById("resultadoMoedas5").innerText =  moedasDe5 + " moeda(s) de M$ 5";
+            document.getElementById("resultadoMoedas1").innerText =  moedasDe5 + " moeda(s) de M$ 1";
+        }
+    </script>
+
+    <br>
+
+    <h2>Fibonacci</h2>
+    
+    <span>Digite um número da sequência Fibonacci:</span>
+    <input type="number" id="Fibonacci">  
+                
+    <button onclick="verificar()">Verificar</button> 
+
+    <section class="Fibonacci">
+        <p id="resultadof"></p> 
+    </section>
+
+    <script>
+        function fibonacci(n) {
+            const fib = [1, 1];
+            for (let i = 2; i <= n; i++) {
+                fib[i] = fib[i - 1] + fib[i - 2];
+            }
+            return fib;
+        }
+
+        function verificar() {
+            const numero = parseInt(document.getElementById("Fibonacci").value);
+            
+            // Retorna 1 se o número digitado for 1 ou 2
+            if (numero === 1 || numero === 2) {
+                document.getElementById("resultadof").innerText = `O número anterior de ${numero} na sequência de Fibonacci é 1`;
+                return;
+            }
+
+            const fibSeq = fibonacci(numero);
+
+            if (fibSeq.includes(numero)) {
+                const index = fibSeq.indexOf(numero);
+                const num1 = fibSeq[index - 2];
+                const num2 = fibSeq[index - 1];
+                document.getElementById("resultadof").innerText = `Os números anteriores que somados dão ${numero} são ${num1} e ${num2}.`;
+            } else {
+                document.getElementById("resultadof").innerText = `${numero} não está na sequência de Fibonacci.`;
+            }
+        }
+    </script>
+
+</body>
+</html>
